@@ -1,16 +1,12 @@
 module UserSession
-  class WebUserSession
-    def initialize(params, session, headers)
-      @params = params
-    end
-
+  class WebUserSession < Base
     def successful?
-      user.valid_password?(password)
+      if user.valid_password?(password)
+        session["user.id"] = user.id
+      end
     end
 
     private
-
-    attr_reader :params
 
     def user
       User.find_by(email: params[:email]) || NullUser.new
