@@ -7,7 +7,7 @@ RSpec.describe "App Logins" do
 
       post "/auth", params: { email: user.email, password: user.password }
 
-      expect(response).to be_success
+      expect(response).to redirect_to team_dashboard_path
     end
   end
 end
