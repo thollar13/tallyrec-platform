@@ -11,28 +11,3 @@ class AuthenticationController < ApplicationController
   end
 end
 
-class WebUserSession
-  def initialize(params, session, headers)
-
-  end
-
-  def successful?; true; end
-end
-
-class UserSession
-  class << self
-    def for(format)
-      authenticators[ format.to_s ]
-    end
-
-    def authenticators
-      {
-        "text/html" => WebUserSession,
-      }
-    end
-  end
-
-  def successful?
-    true
-  end
-end
