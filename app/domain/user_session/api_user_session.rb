@@ -1,9 +1,12 @@
 module UserSession
-  class WebUserSession < Base
+  class APIUserSession < Base
+
     def successful?
-      if user.valid_password?(password)
-        session["user.id"] = user.id
-      end
+      user.valid_password?(password)
+    end
+
+    def authToken
+      AuthTokenGenerator.new(user, headers["HTTP_USER_AGENT"], "api").generate
     end
 
     def user
