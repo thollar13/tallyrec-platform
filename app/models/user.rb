@@ -5,4 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :authentication_tokens
+
+  def self.find_by_auth_token(token)
+    joins(:authentication_tokens).
+      where(authentication_tokens: { token: token }).
+      limit(1)
+  end
 end
