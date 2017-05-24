@@ -1,0 +1,16 @@
+<%= form_with model: registration do |f| %>
+  <% unless registration.is_for_existing_team? %>
+    <%= f.label :team_name, "Enter New Team Name" %>
+    <%= f.text_field :team_name %>
+  <% end %>
+
+  <div>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_numer %>
+  </div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+  </div>
+<% end %>

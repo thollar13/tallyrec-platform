@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_app_user!
+  before_action :authenticate_user!
 
   def index
     render json: { teams: [] }
@@ -7,12 +7,4 @@ class TeamsController < ApplicationController
 
   private
 
-  def authenticate_app_user!
-    @current_user = authenticate_with_http_token do |token, options|
-      User.find_by_auth_token(token)
-    end
-    unless @current_user
-      render json: { bad: true } and return
-    end
-  end
 end
